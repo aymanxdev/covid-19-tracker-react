@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Header from "./components/Header";
+import Map from "./components/Map";
+import SideBar from "./components/SideBar";
+import { AppProvider } from "./ContextAPI/AppContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <div className="app">
+        <div className="app__left">
+          <Header />
+
+          <Map />
+        </div>
+
+        <div className="app__right_bar">
+          <SideBar />
+          {/* Graph */}
+        </div>
+      </div>
+    </AppProvider>
   );
 }
 
