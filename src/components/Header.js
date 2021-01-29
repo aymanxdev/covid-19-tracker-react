@@ -1,15 +1,20 @@
 import React, { useContext } from "react";
 import { MenuItem, FormControl, Select } from "@material-ui/core";
 import { AppContext } from "../ContextAPI/AppContext";
-
+import { prettyPrintStat } from "../helpers/util";
 import "../assets/header.css";
 import SubCard from "./SubCard";
-import "../../src/App.css";
+//import "../../src/App.css";
 
 function Header() {
-  const { onCountryChange, countries, country, countryInfo } = useContext(
-    AppContext
-  );
+  const {
+    onCountryChange,
+    countries,
+    country,
+    countryInfo,
+    setCasesType,
+    casesType,
+  } = useContext(AppContext);
 
   return (
     <div>
@@ -26,21 +31,32 @@ function Header() {
       </div>
       <div className="app__stats">
         <SubCard
+          key={country.id}
+          onClick={(e) => setCasesType("cases")}
           title="Cases"
-          cases={countryInfo.todayCases}
-          total={countryInfo.cases}
+          active={casesType === "cases"}
+          cases={prettyPrintStat(countryInfo.todayCases)}
+          total={prettyPrintStat(countryInfo.cases)}
         />
 
         <SubCard
+          key={country.id}
+          onClick={(e) => setCasesType("recovered")}
           title="Recovered"
-          cases={countryInfo.todayRecovered}
-          total={countryInfo.recovered}
+          color
+          isGreen={casesType === "recovered"}
+          active={casesType === "recovered"}
+          cases={prettyPrintStat(countryInfo.todayRecovered)}
+          total={prettyPrintStat(countryInfo.recovered)}
         />
 
         <SubCard
+          key={country.id}
+          onClick={(e) => setCasesType("deaths")}
           title="Deaths"
-          cases={countryInfo.todayDeaths}
-          total={countryInfo.deaths}
+          active={casesType === "deaths"}
+          cases={prettyPrintStat(countryInfo.todayDeaths)}
+          total={prettyPrintStat(countryInfo.deaths)}
         />
       </div>
     </div>

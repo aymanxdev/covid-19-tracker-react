@@ -4,3 +4,10 @@
   align-items: center;
   margin-bottom: 20px;
 }
+.app__stats {
+  display: flex;
+  justify-content: space-between;
+}
+.app__dropdown {
+  background-color: white;
+}

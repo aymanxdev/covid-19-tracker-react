@@ -1,12 +1,17 @@
 import React, { createContext, useState, useEffect } from "react";
 import { WORLDWIDE_URL, COUNTRIES_URL } from "../helpers/constants";
 import { sortData } from "../helpers/util";
+
 export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({ lat: 34.90764, lng: -40.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   useEffect(() => {
     fetch(WORLDWIDE_URL)
@@ -28,6 +33,7 @@ export const AppProvider = ({ children }) => {
             value: country.countryInfo.iso2, // country code : UK
           }));
           const sortedData = sortData(data);
+          setMapCountries(data);
           setTableData(sortedData);
           setCountries(countries);
         });
@@ -49,6 +55,8 @@ export const AppProvider = ({ children }) => {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapZoom(4);
       });
   };
   console.log("Country info here >>>", countryInfo);
@@ -61,6 +69,14 @@ export const AppProvider = ({ children }) => {
         country,
         countryInfo,
         tableData,
+        mapCenter,
+        mapZoom,
+        mapCountries,
+        casesType,
+        setCasesType,
+        setMapCountries,
+        setMapZoom,
+        setMapCenter,
         setTableData,
         setCountries,
         setCountry,

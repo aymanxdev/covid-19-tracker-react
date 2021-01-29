@@ -1,25 +1,35 @@
 import React from "react";
-import "../assets/subCard.css";
 import { Card, CardContent, Typography } from "@material-ui/core";
+import "../assets/subCard.css";
 
-function SubCard({ title, cases, total }) {
+function SubCard({ title, cases, total, active, color, isGreen, ...props }) {
+  console.log(title, active);
   return (
-    <div>
-      <Card className="sub_card">
-        <CardContent>
-          {/*Title */}
-          <Typography color="primary">{title}</Typography>
+    <Card
+      onClick={props.onClick}
+      className={`sub_card ${
+        active ? "subcard--selected" : "subcard--notSelected"
+      } ${isGreen ? "subcard--isGreen" : "subcard--notSelected"}`}
+    >
+      <CardContent>
+        {/*Title */}
+        <Typography color="textSecondary">{title}</Typography>
 
-          {/*Number of Cases */}
-          <h2 className="card_cases">{cases}</h2>
+        {/*Number of Cases */}
+        <h2
+          className={`card_cases ${isGreen && "card_cases--green"} ${
+            color && "card_cases--green"
+          }`}
+        >
+          {cases}
+        </h2>
 
-          {/*Total */}
-          <Typography className="card_total" color="textSecondary">
-            {total} Total
-          </Typography>
-        </CardContent>
-      </Card>
-    </div>
+        {/*Total */}
+        <Typography className="card_total" color="textSecondary">
+          {total} Total
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }
 
