@@ -5,11 +5,24 @@ import Table from "./Table";
 import "../assets/sideBar.css";
 import LineGraph from "./LineGraph";
 import ToggleButton from "./ToggleButton";
+import GitHubButton from "react-github-btn";
 function SideBar() {
   const { tableData, casesType, darkMode } = useContext(AppContext);
   return (
     <div>
-      <ToggleButton className="toggle_button" />
+      <div className="top_bar">
+        <GitHubButton
+          href="https://github.com/aymanxdev"
+          data-color-scheme={`${
+            darkMode && "no-preference: dark; light: dark; dark: light;"
+          }`}
+          data-size="large"
+          aria-label="Follow @aymanxdev on GitHub"
+        >
+          Follow @aymanxdev
+        </GitHubButton>
+        <ToggleButton className="toggle_button" />
+      </div>
       <Card
         darkMode={darkMode}
         className={`side__bar ${darkMode && "dark-mode--sideBar"}`}

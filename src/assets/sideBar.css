@@ -39,3 +39,8 @@ h6 {
   flex-direction: end;
   margin-bottom: 5px;
 }
+
+.top_bar {
+  display: flex;
+  justify-content: space-between;
+}
