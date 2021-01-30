@@ -1,14 +1,16 @@
 * {
   margin: 0;
 }
+.dark-mode {
+  background-color: #18191a !important;
+  color: #f5f6f7;
+}
 
 .app {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-
   margin-top: 35px;
-
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -28,6 +30,10 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+.toggle-button-dark {
+  background-color: rgb(134, 134, 201) !important;
 }
 
 @media (max-width: 990px) {

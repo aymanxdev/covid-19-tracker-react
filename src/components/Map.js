@@ -5,13 +5,14 @@ import { showDataOnMap } from "../helpers/util";
 import "../assets/map.css";
 
 function Map() {
-  const { mapCenter, mapZoom, mapCountries, casesType } = useContext(
+  const { mapCenter, mapZoom, mapCountries, darkMode, casesType } = useContext(
     AppContext
   );
 
   return (
-    <div className="map">
+    <div className={`map ${darkMode && "dark-mode-map"}`}>
       <LeafletMap
+        darkMode={darkMode}
         countries={mapCountries}
         casesType={casesType}
         center={mapCenter}

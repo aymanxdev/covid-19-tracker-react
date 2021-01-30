@@ -19,3 +19,11 @@
 .table td {
   padding: 0.5rem;
 }
+
+.dark-mode--table {
+  background-color: #252526 !important;
+  color: #f5f6f7 !important;
+}
+.dark-mode--table > tr:nth-of-type(odd) {
+  background-color: #606770;
+}

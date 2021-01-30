@@ -3,8 +3,13 @@
   background-color: white;
   padding: 1rem;
   border-radius: 20px;
-  margin-top: 16px;
+  margin-top: 20px;
+  margin-bottom: 10%;
   box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode-map {
+  background-color: #606770;
 }
 
 .map .leaflet-container {

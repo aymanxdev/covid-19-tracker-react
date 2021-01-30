@@ -3,13 +3,12 @@ import { AppProvider } from "./ContextAPI/AppContext";
 import Header from "./components/Header";
 import Map from "./components/Map";
 import SideBar from "./components/SideBar";
-
 import "leaflet/dist/leaflet.css";
 import "./App.css";
 
 function App() {
   return (
-    <AppProvider>
+    <AppProvider darkMode>
       <div className="app">
         <div className="app__left">
           <Header />

@@ -1,9 +1,17 @@
 import React, { createContext, useState, useEffect } from "react";
 import { WORLDWIDE_URL, COUNTRIES_URL } from "../helpers/constants";
 import { sortData } from "../helpers/util";
+import "../App.css";
 
 export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
+  //////the below function is for the dark mode////
+  const getInitialMode = () => {
+    const savedMode = JSON.parse(localStorage.getItem("dark"));
+    return savedMode || false;
+  };
+
+  /////////////
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
@@ -12,6 +20,7 @@ export const AppProvider = ({ children }) => {
   const [mapZoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([]);
   const [casesType, setCasesType] = useState("cases");
+  const [darkMode, setDarkMode] = useState(getInitialMode());
 
   useEffect(() => {
     fetch(WORLDWIDE_URL)
@@ -40,7 +49,7 @@ export const AppProvider = ({ children }) => {
     };
     getCountriesData();
   }, []);
-
+  //fetch country code
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
     setCountry(countryCode);
@@ -61,10 +70,24 @@ export const AppProvider = ({ children }) => {
   };
   console.log("Country info here >>>", countryInfo);
 
+  //////////////////////DARK MODE////////////////////////
+
+  const changeMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("dark", JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  //////////////////////DARK MODE////////////////////////
+
   return (
     <AppContext.Provider
+      className={`${darkMode && "dark-mode"}`}
       value={{
         onCountryChange,
+        changeMode,
         countries,
         country,
         countryInfo,
@@ -73,6 +96,8 @@ export const AppProvider = ({ children }) => {
         mapZoom,
         mapCountries,
         casesType,
+        darkMode,
+        setDarkMode,
         setCasesType,
         setMapCountries,
         setMapZoom,

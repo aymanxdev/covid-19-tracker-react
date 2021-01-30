@@ -4,6 +4,7 @@ import { AppContext } from "../ContextAPI/AppContext";
 import { prettyPrintStat } from "../helpers/util";
 import "../assets/header.css";
 import SubCard from "./SubCard";
+
 //import "../../src/App.css";
 
 function Header() {
@@ -14,13 +15,27 @@ function Header() {
     countryInfo,
     setCasesType,
     casesType,
+    darkMode,
   } = useContext(AppContext);
+
+  const changeBG = () => {
+    darkMode
+      ? (document.body.style.backgroundColor = "black")
+      : (document.body.style.backgroundColor = "#f5f6fa");
+  };
+
+  changeBG();
 
   return (
     <div>
       <div className="app__header">
-        <h1>COVID-19 Tracker</h1>
-        <FormControl className="app__dropdown">
+        <h1 className={`${darkMode && "dark-mode--header"}`}>
+          COVID-19 Tracker
+        </h1>
+
+        <FormControl
+          className={`app__dropdown ${darkMode && "app__dropdown--dark "}`}
+        >
           <Select variant="outlined" onChange={onCountryChange} value={country}>
             <MenuItem value="worldwide">Worldwide</MenuItem>
             {countries.map((country) => (
@@ -31,6 +46,7 @@ function Header() {
       </div>
       <div className="app__stats">
         <SubCard
+          darkMode={darkMode}
           key={country.id}
           onClick={(e) => setCasesType("cases")}
           title="Cases"
@@ -40,6 +56,7 @@ function Header() {
         />
 
         <SubCard
+          darkMode={darkMode}
           key={country.id}
           onClick={(e) => setCasesType("recovered")}
           title="Recovered"
@@ -49,11 +66,13 @@ function Header() {
           cases={prettyPrintStat(countryInfo.todayRecovered)}
           total={prettyPrintStat(countryInfo.recovered)}
         />
-
         <SubCard
+          darkMode={darkMode}
           key={country.id}
           onClick={(e) => setCasesType("deaths")}
           title="Deaths"
+          dText
+          isGray={casesType === "deaths"}
           active={casesType === "deaths"}
           cases={prettyPrintStat(countryInfo.todayDeaths)}
           total={prettyPrintStat(countryInfo.deaths)}

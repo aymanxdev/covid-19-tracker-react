@@ -2,13 +2,20 @@
   flex: 1;
   cursor: pointer;
 }
+.dark-mode {
+  background-color: #252526 !important;
+}
+
+.dark-mode--subtext {
+  color: #f5f6f7 !important;
+}
 
 .sub_card:not(:last-child) {
   margin-right: 20px;
 }
 
 .card_cases {
-  color: #cc1034;
+  color: #ec4646;
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -24,13 +31,19 @@
   border: none;
 }
 .subcard--selected {
-  border-top: 10px solid red;
+  border-top: 10px solid #ec4646;
 }
 
 .subcard--isGreen {
-  border-top: 10px solid green;
+  border-top: 10px solid #16c79a;
 }
 
+.subcard--isGray {
+  border-top: 10px solid #9ba4b4;
+}
+.subCard--selected-text {
+  color: #9ba4b4;
+}
 .card_cases--green {
-  color: green;
+  color: #16c79a;
 }

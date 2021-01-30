@@ -10,4 +10,13 @@
 }
 .app__dropdown {
   background-color: white;
+  width: 250px;
+}
+
+.app__dropdown--dark {
+  background-color: lightgray !important;
+}
+
+.dark-mode--header {
+  color: whitesmoke;
 }

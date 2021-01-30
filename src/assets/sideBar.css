@@ -22,3 +22,20 @@
 .side_info > h3:last-of-type {
   margin-top: 1rem;
 }
+
+.dark-mode--sideBar {
+  background-color: #252526 !important;
+}
+
+.dark-mode--sideInfo > h3,
+h6 {
+  color: white;
+  font-weight: bold;
+}
+
+.toggle_button {
+  display: flex;
+  justify-content: right;
+  flex-direction: end;
+  margin-bottom: 5px;
+}
